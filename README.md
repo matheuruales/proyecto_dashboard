@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dash — Analytics Dashboard
 
-## Getting Started
+Dashboard de analíticas y e-commerce construido con Next.js, basado en una maqueta de Figma. Muestra métricas de negocio como ventas, visitantes, pedidos, sesiones y conversión en una interfaz moderna y responsiva.
 
-First, run the development server:
+## Vista previa
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+┌─────────────────────────────────────────────────────┐
+│ Sidebar │        TopBar (búsqueda, notifs)           │
+│         ├─────────────────────────────────────────── │
+│ Nav     │  [Sales]  [Visitors]  [Orders]             │
+│ Items   │                                            │
+│         │  [Sessions Chart]  [Conversion Gauge]      │
+│         │                                            │
+│         │  [Promo Card]                              │
+└─────────────────────────────────────────────────────┘
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Tecnología | Versión |
+|---|---|
+| Next.js | 16.1.6 |
+| React | 19.2.3 |
+| TypeScript | 5 |
+| Tailwind CSS | 4 |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estructura del proyecto
 
-## Learn More
+```
+app/
+├── layout.tsx                        # Layout raíz con fuente Plus Jakarta Sans
+├── page.tsx                          # Página principal (renderiza DashboardShell)
+├── globals.css                       # Variables CSS de theming y estilos globales
+└── components/
+    └── dashboard/
+        ├── DashboardShell.tsx        # Contenedor raíz del dashboard
+        ├── charts/
+        │   ├── SessionLineChart.tsx  # Gráfica de líneas SVG con curvas bezier
+        │   └── ConversionGauge.tsx   # Gauge semicircular SVG
+        ├── cards/
+        │   ├── StatCard.tsx          # Tarjeta de métrica reutilizable
+        │   ├── SessionsCard.tsx      # Sesiones con gráfica y selector de día
+        │   ├── ConversionCard.tsx    # Conversión con ingresos y gastos
+        │   └── PromoCard.tsx         # Tarjeta de llamada a acción
+        ├── layout/
+        │   ├── TopBar.tsx            # Barra superior
+        │   └── DashboardContent.tsx  # Área de contenido principal
+        ├── navigation/
+        │   └── Sidebar.tsx           # Panel de navegación lateral
+        └── shared/
+            └── Icons.tsx             # Librería de íconos SVG (26+)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación y uso
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Instalar dependencias
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Servidor de desarrollo
+npm run dev
 
-## Deploy on Vercel
+# Build de producción
+npm run build
+npm run start
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Linting
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El servidor de desarrollo corre en [http://localhost:3000](http://localhost:3000).
+
+## Métricas del dashboard
+
+| Métrica | Valor | Tendencia |
+|---|---|---|
+| Total Sales | 263k | +15.6% |
+| Total Visitors | 35k | -6.2% |
+| Total Orders | 165k | +3.5% |
+| Conversión | 58.19% | — |
+
+> Los datos son mock en `app/components/dashboard/shared/dashboardData.ts` y pueden reemplazarse con llamadas a una API real.
+
+## Theming
+
+Los colores están definidos como variables CSS en `globals.css`:
+
+```css
+--primary:  #4d4bff  /* morado */
+--success:  #29b674  /* verde  */
+--danger:   #d06a7b  /* rojo   */
+--bg-page:  #f0f0f6
+--panel:    #ffffff
+```
+
+## Responsividad
+
+| Breakpoint | Comportamiento |
+|---|---|
+| > 1200px | Layout completo con sidebar |
+| ≤ 1200px | Sidebar colapsado |
+| ≤ 980px | Grids apilados verticalmente |
+| ≤ 640px | Optimizaciones mobile |
