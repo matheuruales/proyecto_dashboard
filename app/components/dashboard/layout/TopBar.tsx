@@ -3,6 +3,22 @@ import { Icon } from "../shared/Icons";
 export function TopBar() {
   return (
     <header className="topbar">
+      {/* Header móvil */}
+      <div className="mobile-header">
+        <div className="mobile-brand">
+          <div className="brand-badge" aria-hidden="true">
+            <span>R</span>
+          </div>
+          <span className="brand-label">flex</span>
+        </div>
+        <div className="mobile-header-right">
+          <button className="round-button notify" type="button" aria-label="Notificaciones">
+            <Icon name="bell" className="icon small-icon" />
+            <span className="notify-dot" />
+          </button>
+          <div className="avatar" aria-hidden="true" />
+        </div>
+      </div>
       <div className="topbar-row">
         <div className="search-group">
           <button className="collapse-btn" type="button" aria-label="Toggle sidebar">

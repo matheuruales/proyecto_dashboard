@@ -4,8 +4,8 @@ interface ConversionGaugeProps {
 }
 
 export function ConversionGauge({ value, delta }: ConversionGaugeProps) {
-  const percentage = 80;
-  const radius = 80;
+  const percentage = value;
+  const radius = 85;
   const strokeWidth = 18;
   const circumference = Math.PI * radius;
   const filledLength = (percentage / 100) * circumference;
@@ -15,7 +15,7 @@ export function ConversionGauge({ value, delta }: ConversionGaugeProps) {
       <svg className="gauge-svg" viewBox="0 0 200 140">
         {/* Fondo gris */}
         <path
-          d="M 15 105 A 75 75 0 0 1 185 105"
+          d="M 15 105 A 85 85 0 0 1 185 105"
           fill="none"
           stroke="#e0dff0"
           strokeWidth={strokeWidth}
@@ -23,7 +23,7 @@ export function ConversionGauge({ value, delta }: ConversionGaugeProps) {
         />
         {/* Progreso morado */}
         <path
-          d="M 15 105 A 75 75 0 0 1 185 105"
+          d="M 15 105 A 85 85 0 0 1 185 105"
           fill="none"
           stroke="url(#gaugeGradient)"
           strokeWidth={strokeWidth}
